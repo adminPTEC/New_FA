@@ -600,7 +600,7 @@ export default function Create() {
               />
             </Grid2>
           </Grid2>
-          {createDoc[0].nac_code && <ChatTSX nac_type={createDoc[0].nac_type} createDoc={createDoc} />}
+          {createDoc && createDoc[0]?.nac_code && <ChatTSX nac_type={createDoc[0].nac_type} createDoc={createDoc} />}
         </Container>
         <Backdrop
           sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
