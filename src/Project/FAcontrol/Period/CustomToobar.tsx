@@ -16,9 +16,10 @@ export default function CustomToolbar({ rows }: Readonly<DataTable>) {
     <Box component="main">
       <GridToolbarContainer >
         <Box sx={{ flexGrow: 1 }} />
-        {rows && ( 
+        {rows && (
           <Button size="small" color="primary" startIcon={<SystemUpdateAltIcon />}
-            // onClick={() => exportToExcel(rows)}
+            disabled
+          // onClick={() => exportToExcel(rows)}
           >
             Export
           </Button>

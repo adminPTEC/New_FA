@@ -31,16 +31,18 @@ export const exportToExcel = (rows: NACDetailHistory[]) => {
 
   // Define headers
   const headers = [
-    { key: 'Code', header: 'รหัสทรัพย์สิน', },
-    { key: 'Name', header: 'ชื่อทรัพย์สิน', },
-    { key: 'SerialNo', header: 'SerialNo', },
-    { key: 'OwnerID', header: 'ผู้ถือครอง', },
-    { key: 'Position', header: 'Location NAC', },
-    { key: 'Asset_group', header: 'Asset Group', },
-    { key: 'Group_name', header: 'Group Name', },
-    { key: 'Details', header: 'รายละเอียด', },
-    { key: 'Price', header: 'ราคาทุน', },
-    { key: 'CreateDate', header: 'วันที่ขึ้นทะเบียน', },
+    { key: 'nacdtl_assetsCode', header: 'รหัสทรัพย์สิน', },
+    { key: 'nacdtl_assetsName', header: 'ชื่อทรัพย์สิน', },
+    { key: 'name', header: 'หัวข้อรายการ', },
+    { key: 'nacdtl_assetsPrice', header: 'ราคาทุน', },
+    { key: 'nacdtl_bookV', header: 'BV', },
+    { key: 'nacdtl_PriceSeals', header: 'ราคาขาย', },
+    { key: 'nacdtl_profit', header: 'Group Profit', },
+    { key: 'nac_code', header: 'NAC', },
+    { key: 'create_by', header: 'ผู้ทำรายการ', },
+    { key: 'source_approve_userid', header: 'ผู้อนุมัติ', },
+    { key: 'account_aprrove_id', header: 'ผู้ปิดรายการ', },
+    { key: 'update_date', header: 'วันที่ปิดรายการ', }
   ];
 
   // Add headers to worksheet
@@ -91,34 +93,6 @@ export const exportToExcel = (rows: NACDetailHistory[]) => {
         bottom: { style: 'thin' },
         right: { style: 'thin' }
       };
-
-      // Apply font color based on the status_name value
-      if (headers[colNumber - 1].key === 'status_name') {
-        switch (cell.value) {
-          case 'รอกรอก Book Value':
-            cell.font = { color: { argb: 'FFD700' } }; // Yellow
-            break;
-          case 'รอยืนยันรายการ':
-          case 'รอตรวจสอบ':
-            cell.font = { color: { argb: '5863F8' } }; // Blue
-            break;
-          case 'ยกเลิกรายการแล้ว':
-          case 'ไม่ผ่านการอนุมัติ':
-            cell.font = { color: { argb: 'FF0000' } }; // Red
-            break;
-          case 'รออนุมัติ':
-            cell.font = { color: { argb: 'FF00FF' } }; // Gray
-            break;
-          case 'ปลายทางตรวจรับ':
-            cell.font = { color: { argb: '008080' } }; // Gray
-            break;
-          case 'ดำเนินการเสร็จสิ้น':
-            cell.font = { color: { argb: '808080' } }; // Gray
-            break;
-          default:
-            cell.font = { color: { argb: '000000' } }; // Default to black if no match
-        }
-      }
     });
   });
 
